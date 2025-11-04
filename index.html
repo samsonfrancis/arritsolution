@@ -19,7 +19,7 @@
 
         /* Header */
         header {
-            background: #2c3e50;
+            background: #0e7490;
             color: white;
             padding: 1rem 0;
             position: fixed;
@@ -45,13 +45,19 @@
         }
 
         .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: #3498db;
+            width: 60px;
+            height: 60px;
+            background: white;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 5px;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .logo h1 {
@@ -76,7 +82,7 @@
         }
 
         nav a:hover {
-            color: #3498db;
+            color: #bae6fd;
         }
 
         /* Hero Section */
@@ -119,6 +125,8 @@
             font-weight: 600;
             transition: all 0.3s;
             display: inline-block;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-primary {
@@ -143,10 +151,20 @@
         }
 
         .hero-image {
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23455a64" width="400" height="300"/><rect fill="%23546e7a" x="50" y="50" width="300" height="200" rx="10"/><circle fill="%2364b5f6" cx="120" cy="100" r="20"/><circle fill="%2364b5f6" cx="280" cy="100" r="20"/><rect fill="%2337474f" x="100" y="150" width="200" height="80"/></svg>') center/cover;
             height: 300px;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-image: url('images/banner.jpeg');
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
         }
 
         /* Services Section */
@@ -188,6 +206,7 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s;
+            cursor: pointer;
         }
 
         .service-card:hover {
@@ -205,44 +224,146 @@
             font-size: 0.95rem;
         }
 
-        /* Repairs Section */
-        .repairs {
+        /* Testimonials Section */
+        .testimonials {
             padding: 80px 20px;
-            background: #f8f9fa;
+            background: #e0f2fe;
+            position: relative;
         }
 
-        .repairs-content {
+        .testimonials-content {
             max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
         }
 
-        .repairs-image {
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23607d8b" width="400" height="300"/><rect fill="%23455a64" x="100" y="100" width="200" height="100" rx="5"/><circle fill="%23ffc107" cx="150" cy="150" r="15"/><circle fill="%23ffc107" cx="250" cy="150" r="15"/></svg>') center/cover;
-            height: 350px;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .repairs-text {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-
-        .repairs-text h2 {
-            font-size: 2rem;
-            color: #2c3e50;
+        .testimonials h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #0e7490;
             margin-bottom: 20px;
         }
 
-        .repairs-text p {
+        .testimonials-subtitle {
+            text-align: center;
+            color: #0e7490;
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-carousel {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .testimonial-card {
+            min-width: 100%;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .testimonial-stars {
+            color: #ffc107;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
             color: #555;
             line-height: 1.8;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .testimonial-info h4 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-info p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .carousel-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #0e7490;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .carousel-btn:hover {
+            background: #155e75;
+            transform: scale(1.1);
+        }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(14, 116, 144, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .indicator.active {
+            background: #0e7490;
+            width: 30px;
+            border-radius: 6px;
         }
 
         /* Customers Section */
@@ -311,14 +432,17 @@
 
         .map-container {
             background: white;
-            padding: 20px;
+            padding: 0;
             border-radius: 10px;
             margin-bottom: 40px;
             height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #666;
+            overflow: hidden;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
         }
 
         .contact-methods {
@@ -326,7 +450,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 40px;
             max-width: 800px;
-            margin: 0 auto;
+            margin: 40px auto;
         }
 
         .contact-card {
@@ -410,8 +534,12 @@
                 grid-template-columns: 1fr;
             }
 
-            .repairs-content {
-                grid-template-columns: 1fr;
+            .testimonials h2 {
+                font-size: 2rem;
+            }
+
+            .testimonial-card {
+                padding: 30px 20px;
             }
 
             .contact-methods {
@@ -426,6 +554,10 @@
                 flex-direction: column;
                 gap: 1rem;
             }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -434,10 +566,12 @@
     <header>
         <div class="header-content">
             <div class="logo">
-                <div class="logo-icon">💼</div>
+                <div class="logo-icon">
+                    <img src="images/logo.png" alt="ARR IT Solution Logo">
+                </div>
                 <div>
                     <h1>ARR IT Solution</h1>
-                    <p>Reliable and Fast IT Solutions</p>
+                    <p>Laptop Solutions & IT Support</p>
                 </div>
             </div>
             <nav>
@@ -456,7 +590,7 @@
                 <h2>Laptop Services & IT Support</h2>
                 <p>Expert IT solutions and reliable laptop repair services for homes and businesses. From hardware fixes to dedicated laptop rental options, laptop sales, equipment supply, LAN cabling work, and CCTV installation.</p>
                 <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">📞 Call Us</a>
+                    <a href="tel:7892908908" class="btn btn-primary">📞 Call Us</a>
                     <a href="mailto:rajkumararjit@itsolution.com" class="btn btn-secondary">✉️ Email Us</a>
                 </div>
             </div>
@@ -503,7 +637,7 @@
 
                 <div class="service-card">
                     <h3>System Admin Man Power Supply</h3>
-                    <p>Expert IT Staffing - Qualified System Administrators - Access skilled IT staff for your organization for both short-term and long-term support from well-trained system administrators and IT professionals tailored for seamless networking and robust support. Let us lead with environments.</p>
+                    <p>Expert IT Staffing - Qualified System Administrators - Access skilled IT staff for your organization for both short-term and long-term support from well-trained system administrators and IT professionals tailored for seamless networking and robust support.</p>
                 </div>
 
                 <div class="service-card">
@@ -514,13 +648,64 @@
         </div>
     </section>
 
-    <!-- Repairs Section -->
-    <section class="repairs">
-        <div class="repairs-content">
-            <div class="repairs-image"></div>
-            <div class="repairs-text">
-                <h2>Fast, Friendly Repairs</h2>
-                <p>ARR IT SOLUTION fixes our laptops quickly and got our operations running smoothly. Always friendly, fast, and call in a moment every single.</p>
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="testimonials-content">
+            <h2>Fast, Friendly Repairs</h2>
+            <p class="testimonials-subtitle">What Our Clients Say About Us</p>
+            
+            <div class="testimonial-carousel">
+                <div class="testimonial-track" id="testimonialTrack">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"ARR IT SOLUTION fixed my laptop quickly and got our operations running smoothly. Always friendly, fast, and they respond in a moment every single time. Highly recommended for any IT support needs!"</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">RS</div>
+                            <div class="testimonial-info">
+                                <h4>Rajesh Sharma</h4>
+                                <p>Business Owner, Bangalore</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"Excellent chip-level service! They recovered my important data when I thought it was lost forever. The technical expertise and customer service are outstanding. Will definitely use their services again."</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">PK</div>
+                            <div class="testimonial-info">
+                                <h4>Priya Kumar</h4>
+                                <p>Software Engineer</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"We rented laptops for our training event and the service was impeccable. Quality equipment, professional setup, and great support throughout. ARR IT Solution is now our go-to for all IT needs!"</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">AM</div>
+                            <div class="testimonial-info">
+                                <h4>Anil Mehta</h4>
+                                <p>Training Manager, Tech Corp</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-controls">
+                    <button class="carousel-btn" onclick="previousTestimonial()">‹</button>
+                    <button class="carousel-btn" onclick="nextTestimonial()">›</button>
+                </div>
+
+                <div class="carousel-indicators">
+                    <span class="indicator active" onclick="goToTestimonial(0)"></span>
+                    <span class="indicator" onclick="goToTestimonial(1)"></span>
+                    <span class="indicator" onclick="goToTestimonial(2)"></span>
+                </div>
             </div>
         </div>
     </section>
@@ -544,24 +729,32 @@
     <section class="contact" id="contact">
         <div class="contact-content">
             <h2>Your IT Support, Always Within Reach</h2>
-            <p class="contact-intro">From local offices to our digital support desk, ARR IT SOLUTION is never far away. Whether in Bangalore or nearby, our experts are ready to assist. Whether by phone, WhatsApp chat, or in-person, we're equipped with the network presence to be available. If you experience any tech or IT delay every time, reaching our systems easy and more prompt.</p>
+            <p class="contact-intro">From local offices to our digital support desk, ARR IT SOLUTION is never far away. Whether in Bangalore or nearby, our experts are ready to assist. Whether by phone, WhatsApp chat, or in-person, we're equipped with the network presence to be available.</p>
             
             <div class="map-container">
-                <p>📍 Map View - Location in Bangalore, Karnataka</p>
+                <iframe 
+                    src="https://maps.google.com/maps?q=13.0002516,77.7059211&hl=en&z=15&output=embed"
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
 
             <div class="contact-methods">
                 <div class="contact-card">
                     <div class="contact-icon">📞</div>
                     <h3>Call us</h3>
-                    <p>Questions or need repairs? Call 7 days/week and speak 4:00p. Whether it's device/service queries, technical setup, our IT support and service consultancy team are prepared to help. 24/7 rapid call-back real deal.</p>
+                    <p>Questions or need repairs? Call 7 days/week. Whether it's device/service queries, technical setup, our IT support and service consultancy team are prepared to help.</p>
                     <a href="tel:7892908908" class="contact-link">7892908908</a>
                 </div>
 
                 <div class="contact-card">
                     <div class="contact-icon">📍</div>
                     <h3>Locate Us</h3>
-                    <p>No 5, Krishna Layout, 3rd Main, Chikkabanavara Layout, Amruthahalli, 5.R Nagar, Bangalore - 560 064</p>
+                    <p>No 5, Krishna Layout, 3rd Main, Chikkabanavara Layout, Amruthahalli, S.R Nagar, Bangalore - 560 064</p>
                     <a href="mailto:rajkumararjit@itsolution.com" class="contact-link">rajkumararjit@itsolution.com</a>
                 </div>
             </div>
@@ -575,13 +768,62 @@
                 <h3>ARR IT Solution</h3>
             </div>
             <div class="footer-links">
-                <a href="#">Terms and Conditions</a>
-                <a href="#">Privacy Policy</a>
+                <a href="#terms">Terms and Conditions</a>
+                <a href="#privacy">Privacy Policy</a>
             </div>
         </div>
         <div class="footer-bottom">
             © 2025 All rights reserved.
         </div>
     </footer>
+
+    <script>
+        // Testimonial Carousel
+        let currentTestimonial = 0;
+        const totalTestimonials = 3;
+
+        function updateCarousel() {
+            const track = document.getElementById('testimonialTrack');
+            const indicators = document.querySelectorAll('.indicator');
+            
+            track.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+            
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentTestimonial);
+            });
+        }
+
+        function nextTestimonial() {
+            currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
+            updateCarousel();
+        }
+
+        function previousTestimonial() {
+            currentTestimonial = (currentTestimonial - 1 + totalTestimonials) % totalTestimonials;
+            updateCarousel();
+        }
+
+        function goToTestimonial(index) {
+            currentTestimonial = index;
+            updateCarousel();
+        }
+
+        // Auto-play carousel
+        setInterval(nextTestimonial, 5000);
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
