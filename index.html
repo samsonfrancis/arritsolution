@@ -3,825 +3,588 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARR IT Solution - Laptop Services & IT Support</title>
+    <title>ARR IT Solution | Laptop Services & IT Support</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-color: #2563eb; /* Modern Tech Blue */
+            --secondary-color: #1e40af; /* Darker Blue */
+            --accent-color: #0ea5e9; /* Light Blue */
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f3f4f6;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: var(--text-dark);
+            overflow-x: hidden;
         }
 
-        /* Header */
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* --- NAVIGATION --- */
         header {
-            background: #0e7490;
-            color: white;
-            padding: 1rem 0;
             position: fixed;
-            width: 100%;
             top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
         }
 
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo-icon {
-            width: 60px;
-            height: 60px;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 5px;
-        }
-
-        .logo-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .logo h1 {
             font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            letter-spacing: -1px;
         }
 
-        .logo p {
-            font-size: 0.85rem;
-            opacity: 0.9;
-        }
+        .logo span { color: var(--text-dark); }
 
-        nav ul {
+        .nav-links {
             display: flex;
-            list-style: none;
             gap: 2rem;
         }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #bae6fd;
-        }
-
-        /* Hero Section */
-        .hero {
-            margin-top: 80px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 60px 20px;
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .hero-text h2 {
-            font-size: 2.5rem;
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-
-        .hero-text p {
-            color: #555;
-            margin-bottom: 30px;
-            line-height: 1.8;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-        }
-
-        .btn {
-            padding: 12px 30px;
-            border-radius: 25px;
-            text-decoration: none;
+        .nav-links a {
             font-weight: 600;
-            transition: all 0.3s;
-            display: inline-block;
-            border: none;
-            cursor: pointer;
+            color: var(--text-dark);
+            transition: var(--transition);
         }
 
-        .btn-primary {
-            background: #0e7490;
-            color: white;
+        .nav-links a:hover { color: var(--primary-color); }
+
+        .cta-btn {
+            padding: 0.6rem 1.5rem;
+            background: var(--primary-color);
+            color: var(--white) !important;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
         }
 
-        .btn-primary:hover {
-            background: #155e75;
+        .cta-btn:hover {
+            background: var(--secondary-color);
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
         }
 
-        .btn-secondary {
-            background: white;
-            color: #0e7490;
-            border: 2px solid #0e7490;
-        }
+        /* Mobile Menu Button */
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
 
-        .btn-secondary:hover {
-            background: #0e7490;
-            color: white;
-        }
-
-        .hero-image {
-            height: 300px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1517430816045-df4b7de8dbd7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
-            background-image: url('images/banner.jpeg');
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 1rem;
+            margin-top: 60px;
         }
 
-        .hero-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 10px;
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
         }
 
-        /* Services Section */
-        .services {
-            background: #0e7490;
-            color: white;
-            padding: 80px 20px;
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
         }
 
-        .services-content {
+        /* --- SECTION STYLES --- */
+        section {
+            padding: 5rem 5%;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .services h2 {
+        .section-title {
             text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
             font-size: 2.5rem;
-            margin-bottom: 20px;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
         }
 
-        .services-intro {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 50px;
-            line-height: 1.8;
+        .section-title .line {
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 0 auto;
+            border-radius: 2px;
         }
 
+        /* --- SERVICES --- */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
         }
 
         .service-card {
-            background: white;
-            color: #333;
-            padding: 30px;
+            background: var(--white);
+            padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            border-bottom: 4px solid transparent;
+            text-align: center;
         }
 
         .service-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            border-bottom-color: var(--primary-color);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
         }
 
         .service-card h3 {
-            color: #0e7490;
-            margin-bottom: 15px;
-            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
         }
 
         .service-card p {
-            line-height: 1.6;
+            color: var(--text-light);
             font-size: 0.95rem;
         }
 
-        /* Testimonials Section */
-        .testimonials {
-            padding: 80px 20px;
-            background: #e0f2fe;
-            position: relative;
+        /* --- ABOUT & STATS --- */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
 
-        .testimonials-content {
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .about-img img {
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* --- TESTIMONIALS --- */
+        .testimonials { background: var(--bg-light); width: 100%; max-width: 100%; }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
-        }
-
-        .testimonials h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #0e7490;
-            margin-bottom: 20px;
-        }
-
-        .testimonials-subtitle {
-            text-align: center;
-            color: #0e7490;
-            margin-bottom: 50px;
-            font-size: 1.1rem;
-        }
-
-        .testimonial-carousel {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-
-        .testimonial-track {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
         }
 
         .testimonial-card {
-            min-width: 100%;
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            text-align: center;
-        }
-
-        .testimonial-stars {
-            color: #ffc107;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-        }
-
-        .testimonial-text {
-            font-size: 1.1rem;
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 25px;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .testimonial-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .testimonial-info h4 {
-            color: #2c3e50;
-            margin-bottom: 5px;
-            font-size: 1.1rem;
-        }
-
-        .testimonial-info p {
-            color: #777;
-            font-size: 0.9rem;
-        }
-
-        .carousel-controls {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .carousel-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: #0e7490;
-            border: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
-
-        .carousel-btn:hover {
-            background: #155e75;
-            transform: scale(1.1);
-        }
-
-        .carousel-indicators {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(14, 116, 144, 0.3);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .indicator.active {
-            background: #0e7490;
-            width: 30px;
-            border-radius: 6px;
-        }
-
-        /* Customers Section */
-        .customers {
-            padding: 60px 20px;
-            background: white;
-        }
-
-        .customers-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .customers h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #2c3e50;
-        }
-
-        .customers-intro {
-            color: #555;
-            margin-bottom: 40px;
-            line-height: 1.8;
-        }
-
-        .customer-logos {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-
-        .customer-logo {
-            font-size: 1.5rem;
-            color: #999;
-            font-style: italic;
-            padding: 20px;
-            border: 2px solid #e0e0e0;
-            border-radius: 5px;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: #0e7490;
-            color: white;
-            padding: 80px 20px;
-        }
-
-        .contact-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .contact h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .contact-intro {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 40px;
-        }
-
-        .map-container {
-            background: white;
-            padding: 0;
+            background: var(--white);
+            padding: 2rem;
             border-radius: 10px;
-            margin-bottom: 40px;
-            height: 400px;
-            overflow: hidden;
+            position: relative;
         }
 
-        .map-container iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
+        .stars { color: #f59e0b; margin-bottom: 1rem; }
+        
+        .testimonial-card p { font-style: italic; color: var(--text-light); }
+        
+        .client-name {
+            margin-top: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
         }
 
-        .contact-methods {
+        /* --- CONTACT --- */
+        .contact-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            max-width: 800px;
-            margin: 40px auto;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(0,0,0,0.05);
         }
 
-        .contact-card {
-            background: rgba(255,255,255,0.1);
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .contact-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 10px;
-            margin: 0 auto 20px;
+        .contact-info {
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 3rem;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .contact-card h3 {
-            margin-bottom: 15px;
-            font-size: 1.5rem;
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 2rem;
         }
 
-        .contact-card p {
-            line-height: 1.6;
-            margin-bottom: 10px;
+        .info-item i { font-size: 1.5rem; margin-top: 5px; }
+        
+        .contact-form { padding: 3rem; }
+        
+        .form-group { margin-bottom: 1.5rem; }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+            transition: var(--transition);
         }
 
-        .contact-link {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--primary-color);
         }
 
-        /* Footer */
+        /* --- FOOTER --- */
         footer {
-            background: #1a252f;
-            color: white;
-            padding: 40px 20px 20px;
+            background: #111827;
+            color: #d1d5db;
+            padding: 4rem 5% 2rem;
         }
 
         .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
             display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 40px;
-            margin-bottom: 20px;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .footer-bottom {
-            text-align: right;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
-            font-size: 0.9rem;
-            opacity: 0.8;
+            border-bottom: 1px solid #374151;
+            padding-bottom: 2rem;
         }
 
-        /* Responsive */
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-col ul li { margin-bottom: 0.8rem; }
+        .footer-col ul li a:hover { color: var(--primary-color); }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .testimonials h2 {
-                font-size: 2rem;
-            }
-
-            .testimonial-card {
-                padding: 30px 20px;
-            }
-
-            .contact-methods {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-            }
+            .navbar .nav-links { display: none; }
+            .menu-toggle { display: block; }
+            
+            .hero-content h1 { font-size: 2.5rem; }
+            .about-container, .contact-container { grid-template-columns: 1fr; }
+            
+            .contact-info { padding: 2rem; }
+            .contact-form { padding: 2rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+
     <header>
-        <div class="header-content">
-            <div class="logo">
-                <div class="logo-icon">
-                    <img src="images/logo.png" alt="ARR IT Solution Logo">
-                </div>
-                <div>
-                    <h1>ARR IT Solution</h1>
-                    <p>Laptop Solutions & IT Support</p>
+        <nav class="navbar">
+            <a href="#" class="logo">ARR <span>IT Solution</span></a>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact" class="cta-btn">Get Quote</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Expert IT Solutions & <br>Laptop Services</h1>
+            <p>From chip-level repairs to enterprise networking. We keep your business connected, protected, and running seamlessly.</p>
+            <a href="#services" class="cta-btn" style="background: white; color: var(--primary-color) !important;">Our Services</a>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="section-title">
+            <h2>Our Services</h2>
+            <div class="line"></div>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-laptop-medical service-icon"></i>
+                <h3>Laptop Service</h3>
+                <p>Expert diagnostics and repairs for all brands and models. Screen replacement, battery issues, and performance tuning.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-microchip service-icon"></i>
+                <h3>Chip Level Service</h3>
+                <p>Advanced motherboard and component-level servicing by trained experts to fix complex hardware issues.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-database service-icon"></i>
+                <h3>Data Recovery</h3>
+                <p>Retrieve lost or corrupted files safely using advanced recovery methods. Secure your vital business data.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-network-wired service-icon"></i>
+                <h3>LAN & CCTV</h3>
+                <p>Professional LAN setup with structured cabling and high-performance surveillance system installation.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-briefcase service-icon"></i>
+                <h3>Rental Laptops</h3>
+                <p>Affordable, high-quality laptops for short-term or long-term projects, events, and remote work.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-recycle service-icon"></i>
+                <h3>Refurbished Laptops</h3>
+                <p>Budget-friendly, professionally refurbished systems that don't compromise on quality or performance.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-users-cog service-icon"></i>
+                <h3>IT Manpower</h3>
+                <p>Qualified System Administrators and IT staff staffing for your organization's short or long-term needs.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-server service-icon"></i>
+                <h3>AMC Support</h3>
+                <p>Annual Maintenance Contracts to ensure your IT infrastructure remains updated and error-free year-round.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="about-container">
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1581092921461-eab6245b0262?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Technician working">
+            </div>
+            <div class="about-text">
+                <h3>Your Trusted IT Partner in Bangalore</h3>
+                <p>ARR IT SOLUTION is more than just laptop repairs. We are a dedicated team of professionals committed to delivering reliable and innovative IT solutions.</p>
+                <p>With every repair, refurbishment, and network installation, our mission is to keep your business connected and secure. Whether you are a startup or a large enterprise, your uptime is our promise.</p>
+                <div style="margin-top: 2rem;">
+                    <div style="display: flex; gap: 2rem;">
+                        <div>
+                            <h4 style="font-size: 2rem; color: var(--primary-color);">500+</h4>
+                            <p>Happy Clients</p>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 2rem; color: var(--primary-color);">100%</h4>
+                            <p>Data Privacy</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <nav>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="section-title">
+            <h2>What Clients Say</h2>
+            <div class="line"></div>
+        </div>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"Fixed my laptop quickly and got our operations running smoothly. Always friendly, fast, and responsive."</p>
+                <span class="client-name">Rajesh Sharma</span>
+                <small>Business Owner</small>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"Excellent chip-level service! They recovered my important data when I thought it was lost forever."</p>
+                <span class="client-name">Priya Kumar</span>
+                <small>Software Engineer</small>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"We rented laptops for our training event and the service was impeccable. Quality equipment and setup."</p>
+                <span class="client-name">Anil Mehta</span>
+                <small>Training Manager</small>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-title">
+            <h2>Get In Touch</h2>
+            <div class="line"></div>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div>
+                    <h3>Contact Info</h3>
+                    <p style="opacity: 0.8; margin-bottom: 2rem;">We are ready to assist you 7 days a week.</p>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>No 6, 3rd Main, 2nd Block,<br>Omshakthi Layout, Ayappanagar,<br>KR Puram, Bangalore- 560036</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+91 7892908901</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>rajkiran@arritsolution.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 2rem;">
+                    <a href="#" style="font-size: 1.5rem; margin-right: 1rem;"><i class="fab fa-facebook"></i></a>
+                    <a href="#" style="font-size: 1.5rem; margin-right: 1rem;"><i class="fab fa-instagram"></i></a>
+                    <a href="#" style="font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <form action="mailto:rajkiran@arritsolution.com" method="post" enctype="text/plain">
+                    <h3>Send us a Message</h3>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="name" placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" name="phone" placeholder="Your Phone Number">
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea name="message" rows="4" placeholder="How can we help?"></textarea>
+                    </div>
+                    <button type="submit" class="cta-btn" style="border: none; cursor: pointer; width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4 style="font-size: 1.5rem; color: var(--primary-color);">ARR IT Solution</h4>
+                <p>Expert IT solutions and reliable laptop repair services for homes and businesses in Bangalore.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
                 <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h2>Laptop Services & IT Support</h2>
-                <p>Expert IT solutions and reliable laptop repair services for homes and businesses. From hardware fixes to dedicated laptop rental options, laptop sales, equipment supply, LAN cabling work, and CCTV installation.</p>
-                <div class="hero-buttons">
-                    <a href="tel:7892908901" class="btn btn-primary">📞 Call Us</a>
-                    <a href="mailto:rajkiran@arritsolution.com" class="btn btn-secondary">✉️ Email Us</a>
-                </div>
             </div>
-            <div class="hero-image"></div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="services-content">
-            <h2>Our Services</h2>
-            <p class="services-intro">ARR IT SOLUTION is more than just laptop repairs. From efficient laptop rentals and repair services, to our dedicated chip-level service and secure networking, our skilled team delivers reliably and innovatively. With every repair, refurbishment, and IT solution, trust us to keep your business connected, protected, and secure to run seamlessly. Your uptime is our promise, your progress our mission.</p>
-            
-            <div class="services-grid">
-                <div class="service-card">
-                    <h3>Laptop Service</h3>
-                    <p>Reliable Laptop Repairs - Restore performance and resolve issues with expert diagnostics and repairs for all brands and models, ensuring seamless functionality and extending the life of your laptop.</p>
-                </div>
-
-                <div class="service-card">
-                    <h3>Chip Level Service</h3>
-                    <p>Precision Chip-Level Repairs - Advanced motherboard and component-level servicing, specialized motherboard and component repairs, backed by trained experts to fix issues beyond standard repair service.</p>
-                </div>
-
-                <div class="service-card">
-                    <h3>Data Recovery</h3>
-                    <p>Reliable Data Recovery - Safeguard Your Important Files - Retrieve lost or corrupted files safely using advanced recovery methods. Preserve vital data by securing it to prevent disasters, so you can confidently recommend.</p>
-                </div>
-
-                <div class="service-card">
-                    <h3>Rental Laptops</h3>
-                    <p>Flexible Laptop Rentals - Affordable, High-Quality Laptops - Rent high-performance laptops for short-term or long-term projects. Ideal for events, remote work, training sessions, and flexible working models. IT solutions.</p>
-                </div>
-
-                <div class="service-card">
-                    <h3>Refurbished Laptops</h3>
-                    <p>Quality Refurbished Systems - Budget-Friendly Laptops - Professionally refurbished, include hardware upgrades, rigorously tested to meet high-performance standards, well-serviced and tested. Upgrade or budget without compromising quality.</p>
-                </div>
-
-                <div class="service-card">
-                    <h3>Used Laptops</h3>
-                    <p>Certified Used Laptops - Affordable and Reliable - All pre-owned laptops checked thoroughly and come with warranty, reliable options providing great value. Affordable yet dependable systems.</p>
-                </div>
-
-                <div class="service-card">
-                    <h3>System Admin Man Power Supply</h3>
-                    <p>Expert IT Staffing - Qualified System Administrators - Access skilled IT staff for your organization for both short-term and long-term support from well-trained system administrators and IT professionals tailored for seamless networking and robust support.</p>
-                </div>
-
-                <div class="service-card">
-                    <h3>LAN and CCTV Installation</h3>
-                    <p>Boost your workplace efficiency and security through professional LAN setup with high-performance structured cabling for all your operations. Experience high-speed, reliable home cabling and surveillance systems for your devices.</p>
-                </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">Laptop Repair</a></li>
+                    <li><a href="#services">Data Recovery</a></li>
+                    <li><a href="#services">AMC Support</a></li>
+                    <li><a href="#services">Networking</a></li>
+                </ul>
             </div>
         </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <div class="testimonials-content">
-            <h2>Fast, Friendly Repairs</h2>
-            <p class="testimonials-subtitle">What Our Clients Say About Us</p>
-            
-            <div class="testimonial-carousel">
-                <div class="testimonial-track" id="testimonialTrack">
-                    <!-- Testimonial 1 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">★★★★★</div>
-                        <p class="testimonial-text">"ARR IT SOLUTION fixed my laptop quickly and got our operations running smoothly. Always friendly, fast, and they respond in a moment every single time. Highly recommended for any IT support needs!"</p>
-                        <div class="testimonial-author">
-                            <div class="testimonial-avatar">RS</div>
-                            <div class="testimonial-info">
-                                <h4>Rajesh Sharma</h4>
-                                <p>Business Owner, Bangalore</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial 2 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">★★★★★</div>
-                        <p class="testimonial-text">"Excellent chip-level service! They recovered my important data when I thought it was lost forever. The technical expertise and customer service are outstanding. Will definitely use their services again."</p>
-                        <div class="testimonial-author">
-                            <div class="testimonial-avatar">PK</div>
-                            <div class="testimonial-info">
-                                <h4>Priya Kumar</h4>
-                                <p>Software Engineer</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial 3 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">★★★★★</div>
-                        <p class="testimonial-text">"We rented laptops for our training event and the service was impeccable. Quality equipment, professional setup, and great support throughout. ARR IT Solution is now our go-to for all IT needs!"</p>
-                        <div class="testimonial-author">
-                            <div class="testimonial-avatar">AM</div>
-                            <div class="testimonial-info">
-                                <h4>Anil Mehta</h4>
-                                <p>Training Manager, Tech Corp</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="carousel-controls">
-                    <button class="carousel-btn" onclick="previousTestimonial()">‹</button>
-                    <button class="carousel-btn" onclick="nextTestimonial()">›</button>
-                </div>
-
-                <div class="carousel-indicators">
-                    <span class="indicator active" onclick="goToTestimonial(0)"></span>
-                    <span class="indicator" onclick="goToTestimonial(1)"></span>
-                    <span class="indicator" onclick="goToTestimonial(2)"></span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Customers Section -->
-    <section class="customers">
-        <div class="customers-content">
-            <h2>Loyal Customers</h2>
-            <p class="customers-intro">Our trusted clients are the powerhouse behind ARR IT SOLUTION. From startups to large enterprises, our wide range of laptop repair services and solutions to keep their technology running smoothly and securely. Their loyalty and trust reward us every IT solution challenge - and that commitment to excellence fuels our relentless pursuit in IT system and laptop repair partnerships - our clients lasting success and peace of mind.</p>
-            
-            <div class="customer-logos">
-                <div class="customer-logo">Style</div>
-                <div class="customer-logo">JUMP</div>
-                <div class="customer-logo">blob</div>
-                <div class="customer-logo">~FAST</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="contact-content">
-            <h2>Your IT Support, Always Within Reach</h2>
-            <p class="contact-intro">From local offices to our digital support desk, ARR IT SOLUTION is never far away. Whether in Bangalore or nearby, our experts are ready to assist. Whether by phone, WhatsApp chat, or in-person, we're equipped with the network presence to be available.</p>
-            
-            <div class="map-container">
-                <iframe 
-                    src="https://maps.google.com/maps?q=13.0002516,77.7059211&hl=en&z=15&output=embed"
-                    width="100%" 
-                    height="100%" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-            </div>
-
-            <div class="contact-methods">
-                <div class="contact-card">
-                    <div class="contact-icon">📞</div>
-                    <h3>Call us</h3>
-                    <p>Questions or need repairs? Call 7 days/week. Whether it's device/service queries, technical setup, our IT support and service consultancy team are prepared to help.</p>
-                    <a href="tel:7892908901" class="contact-link">7892908901</a>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-icon">📍</div>
-                    <h3>Locate Us</h3>
-                    <p>N0 6, 3rMain, 2nd Block, Omshakthi Layout, Ayappanagar, KR Puram, Bangalore- 560036 </p>
-                    <a href="mailto:rajkiran@arritsolution.com" class="contact-link">rajkiran@arritsolution.com</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div>
-                <h3>ARR IT Solution</h3>
-            </div>
-            <div class="footer-links">
-                <a href="#terms">Terms and Conditions</a>
-                <a href="#privacy">Privacy Policy</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            © 2025 All rights reserved.
+        <div class="copyright">
+            <p>&copy; 2025 ARR IT Solution. All Rights Reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Testimonial Carousel
-        let currentTestimonial = 0;
-        const totalTestimonials = 3;
+        // Sticky Header effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            header.classList.toggle('sticky', window.scrollY > 0);
+        });
 
-        function updateCarousel() {
-            const track = document.getElementById('testimonialTrack');
-            const indicators = document.querySelectorAll('.indicator');
-            
-            track.style.transform = `translateX(-${currentTestimonial * 100}%)`;
-            
-            indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentTestimonial);
-            });
-        }
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
 
-        function nextTestimonial() {
-            currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
-            updateCarousel();
-        }
+        menuToggle.addEventListener('click', () => {
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '60px';
+                navLinks.style.right = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.background = 'white';
+                navLinks.style.padding = '1rem';
+                navLinks.style.boxShadow = '0 10px 15px rgba(0,0,0,0.1)';
+            }
+        });
 
-        function previousTestimonial() {
-            currentTestimonial = (currentTestimonial - 1 + totalTestimonials) % totalTestimonials;
-            updateCarousel();
-        }
-
-        function goToTestimonial(index) {
-            currentTestimonial = index;
-            updateCarousel();
-        }
-
-        // Auto-play carousel
-        setInterval(nextTestimonial, 5000);
-
-        // Smooth scroll for navigation
+        // Smooth Scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                navLinks.style.display = ''; // Close mobile menu on click
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         });
     </script>
