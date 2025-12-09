@@ -159,29 +159,59 @@
             </div>
         </div>
 
-        <!-- Hero Graphic (Abstract Motherboard) -->
+        <!-- Hero Graphic (Hardware Triad) -->
         <div class="mt-20 relative max-w-4xl mx-auto fade-in-section delay-300">
             <div class="absolute inset-0 bg-cyan-500 blur-[120px] opacity-10"></div>
             <div class="glass-card rounded-xl p-1 border-t border-white/20 relative overflow-hidden">
-                <!-- Decorative lines representing circuits -->
-                <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#22d3ee 1px, transparent 1px); background-size: 20px 20px;"></div>
+                <!-- Grid background -->
+                <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(rgba(34, 211, 238, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(34, 211, 238, 0.1) 1px, transparent 1px); background-size: 30px 30px;"></div>
                 
                 <div class="bg-[#0a0a0a] rounded-lg relative aspect-[21/9] flex items-center justify-center border border-white/5 overflow-hidden">
-                    <div class="relative w-full h-full flex flex-col items-center justify-center">
-                        <!-- Animated Central Chip -->
-                        <div class="w-24 h-24 border-2 border-cyan-500/50 rounded bg-cyan-900/10 flex items-center justify-center relative shadow-[0_0_30px_rgba(34,211,238,0.2)]">
-                            <i data-lucide="cpu" class="w-12 h-12 text-cyan-400"></i>
-                            <!-- Scanning line -->
-                            <div class="absolute w-full h-[2px] bg-cyan-400/50 top-0 animate-[scan_3s_ease-in-out_infinite]"></div>
+                    <div class="relative w-full h-full flex items-center justify-center">
+                        
+                        <!-- Connection Nodes -->
+                        <div class="absolute w-3/4 h-[1px] bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent top-1/2"></div>
+                        
+                        <!-- Left Node: Infrastructure -->
+                        <div class="absolute left-[20%] top-1/2 -translate-y-1/2 flex flex-col items-center gap-4">
+                            <div class="w-16 h-16 rounded-xl bg-gradient-to-b from-blue-900/40 to-black border border-blue-500/30 flex items-center justify-center shadow-[0_0_20px_rgba(59,130,246,0.15)] relative">
+                                <i data-lucide="server" class="w-8 h-8 text-blue-400"></i>
+                                <div class="absolute -bottom-2 w-full h-[1px] bg-blue-500/50 blur-[2px]"></div>
+                            </div>
+                            <span class="text-xs font-mono text-blue-400 tracking-wider">INFRA</span>
                         </div>
-                        
-                        <!-- Connection Lines -->
-                        <div class="absolute top-1/2 left-1/4 w-1/4 h-[1px] bg-gradient-to-r from-transparent to-cyan-500/50"></div>
-                        <div class="absolute top-1/2 right-1/4 w-1/4 h-[1px] bg-gradient-to-l from-transparent to-cyan-500/50"></div>
-                        
-                        <div class="absolute bottom-8 flex gap-8 text-gray-500 text-xs font-mono">
-                            <span class="flex items-center gap-1"><span class="w-2 h-2 bg-green-500 rounded-full"></span> DIAGNOSTICS: ONLINE</span>
-                            <span class="flex items-center gap-1"><span class="w-2 h-2 bg-cyan-500 rounded-full"></span> RENTALS: AVAILABLE</span>
+
+                        <!-- Center Node: Hardware (Hero) -->
+                        <div class="relative z-10 flex flex-col items-center gap-6">
+                            <div class="w-28 h-28 rounded-2xl bg-gradient-to-b from-cyan-900/40 to-black border border-cyan-400/50 flex items-center justify-center shadow-[0_0_40px_rgba(34,211,238,0.2)] relative">
+                                <i data-lucide="monitor" class="w-14 h-14 text-cyan-400"></i>
+                                
+                                <!-- Pulse Ring -->
+                                <div class="absolute inset-0 border border-cyan-400/30 rounded-2xl animate-ping opacity-20"></div>
+                                <!-- Corner Accents -->
+                                <div class="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-cyan-400"></div>
+                                <div class="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-cyan-400"></div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <span class="text-sm font-bold text-white tracking-widest">HARDWARE</span>
+                                <span class="text-[10px] text-cyan-500 font-mono">CORE SERVICES</span>
+                            </div>
+                        </div>
+
+                        <!-- Right Node: Repairs -->
+                        <div class="absolute right-[20%] top-1/2 -translate-y-1/2 flex flex-col items-center gap-4">
+                            <div class="w-16 h-16 rounded-xl bg-gradient-to-b from-purple-900/40 to-black border border-purple-500/30 flex items-center justify-center shadow-[0_0_20px_rgba(168,85,247,0.15)] relative">
+                                <i data-lucide="wrench" class="w-8 h-8 text-purple-400"></i>
+                                <div class="absolute -bottom-2 w-full h-[1px] bg-purple-500/50 blur-[2px]"></div>
+                            </div>
+                            <span class="text-xs font-mono text-purple-400 tracking-wider">REPAIR</span>
+                        </div>
+
+                        <!-- Status Bar -->
+                        <div class="absolute bottom-6 flex gap-8 text-gray-500 text-[10px] font-mono tracking-widest border-t border-white/5 pt-4 w-2/3 justify-center">
+                            <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span> LAB: ACTIVE</span>
+                            <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-cyan-500 rounded-full"></span> ONSITE: READY</span>
+                            <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-blue-500 rounded-full"></span> RENTALS: STOCKED</span>
                         </div>
                     </div>
                 </div>
