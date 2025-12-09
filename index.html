@@ -1,447 +1,544 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARR IT Solution | Premium IT Support</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>ARR IT Solution | Elite Laptop & Network Infrastructure</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* --- CSS VARIABLES --- */
-        :root {
-            --primary-color: #0e7490; /* Professional Teal */
-            --secondary-color: #155e75;
-            --accent-color: #0ea5e9;
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-            --white: #ffffff;
-            --glass-bg: rgba(255, 255, 255, 0.95);
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap');
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-            scroll-behavior: smooth;
+        :root {
+            /* Cyan/Blue/Purple Glow for Tech Vibe */
+            --primary-glow: conic-gradient(from 180deg at 50% 50%, #0891b2 0deg, #3b82f6 180deg, #8b5cf6 360deg);
         }
 
         body {
-            color: var(--text-dark);
-            line-height: 1.6;
-            background-color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            background-color: #030014;
+            color: #ffffff;
+            overflow-x: hidden;
         }
 
-        /* --- UPGRADED HEADER --- */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            box-shadow: var(--shadow);
-            transition: var(--transition);
+        h1, h2, h3, .font-heading {
+            font-family: 'Space Grotesk', sans-serif;
         }
 
-        .navbar {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
+        /* Animations */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, visibility;
         }
 
-        /* Modern Logo Style */
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            text-decoration: none;
-            color: var(--text-dark);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
         }
 
-        .logo span {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .logo i {
-            color: var(--primary-color);
-            font-size: 1.8rem;
-        }
-
-        /* Stylish Navigation */
-        .nav-menu {
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-            list-style: none;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
-            font-size: 0.95rem;
-            position: relative;
-            transition: var(--transition);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: var(--primary-color);
-            transition: var(--transition);
-        }
-
-        .nav-link:hover { color: var(--primary-color); }
-        .nav-link:hover::after { width: 100%; }
-
-        /* Modern Action Button */
-        .btn-header {
-            padding: 0.6rem 1.5rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(14, 116, 144, 0.3);
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-header:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(14, 116, 144, 0.4);
-        }
-
-        .mobile-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--text-dark); }
-
-        /* --- HERO SECTION (Fixed & Modern) --- */
-        .hero {
-            padding: 180px 2rem 100px;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: white;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: all 0.3s ease;
         }
         
-        /* Subtle Grid Pattern Overlay */
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: radial-gradient(#ffffff 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.05;
-        }
-
-        .hero-content {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-            font-weight: 800;
-            background: linear-gradient(to right, #fff, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: #cbd5e1;
-            margin-bottom: 2.5rem;
-            line-height: 1.6;
-        }
-
-        .hero-btns {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .btn-primary {
-            background: var(--primary-color);
-            color: white;
-        }
-        
-        .btn-primary:hover { background: var(--secondary-color); transform: translateY(-2px); }
-
-        .btn-outline {
-            border: 2px solid rgba(255,255,255,0.2);
-            color: white;
-        }
-
-        .btn-outline:hover {
-            border-color: white;
-            background: rgba(255,255,255,0.1);
-        }
-
-        /* --- SECTIONS --- */
-        section { padding: 5rem 2rem; }
-        
-        .container { max-width: 1200px; margin: 0 auto; }
-        
-        .section-header { text-align: center; margin-bottom: 3rem; }
-        .section-header h2 { font-size: 2.25rem; color: var(--text-dark); margin-bottom: 1rem; }
-        .section-header .divider { height: 4px; width: 60px; background: var(--primary-color); margin: 0 auto; border-radius: 2px; }
-
-        /* Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-            transition: var(--transition);
-            border: 1px solid #f1f5f9;
-        }
-
-        .service-card:hover {
+        .glass-card:hover {
+            border-color: rgba(6, 182, 212, 0.3); /* Cyan hover border */
+            background: rgba(255, 255, 255, 0.05);
             transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
-            border-color: var(--primary-color);
+            box-shadow: 0 12px 40px 0 rgba(6, 182, 212, 0.1);
         }
 
-        .icon-box {
-            width: 60px;
-            height: 60px;
-            background: #ecfeff;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
+        .gradient-text {
+            background: linear-gradient(to right, #22d3ee 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .icon-box i { font-size: 1.5rem; color: var(--primary-color); }
-
-        .service-card h3 { margin-bottom: 1rem; font-size: 1.25rem; }
-        .service-card p { color: var(--text-light); font-size: 0.95rem; }
-
-        /* Contact Section */
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
+        /* Carousel Styles */
+        .carousel-track {
+            animation: scroll 40s linear infinite;
         }
-
-        .contact-details {
-            padding: 4rem;
-            background: var(--primary-color);
-            color: white;
-        }
-
-        .contact-item { margin-bottom: 2rem; }
-        .contact-item h4 { font-size: 1.2rem; margin-bottom: 0.5rem; opacity: 0.9; }
-        .contact-item p { font-size: 1.1rem; opacity: 0.8; }
         
-        .map-box { height: 100%; min-height: 400px; }
-        .map-box iframe { width: 100%; height: 100%; border: 0; }
-
-        /* Footer */
-        footer {
-            background: #0f172a;
-            color: #94a3b8;
-            padding: 3rem 2rem;
-            text-align: center;
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            .navbar { padding: 1rem; }
-            .mobile-toggle { display: block; }
-            .nav-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: white;
-                flex-direction: column;
-                padding: 2rem;
-                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-            }
-            .nav-menu.active { display: flex; }
-            .hero h1 { font-size: 2.5rem; }
-            .contact-wrapper { grid-template-columns: 1fr; }
-            .contact-details { padding: 2rem; }
+        .blob {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: var(--primary-glow);
+            filter: blur(120px);
+            border-radius: 50%;
+            opacity: 0.15;
+            z-index: -1;
+            animation: pulse-glow 10s infinite alternate;
+        }
+
+        .blob-right {
+            right: 0;
+            top: 20%;
+            background: conic-gradient(from 0deg, #0e7490, #1d4ed8);
+        }
+
+        @keyframes pulse-glow {
+            0% { transform: scale(1); opacity: 0.15; }
+            100% { transform: scale(1.1); opacity: 0.25; }
+        }
+
+        /* Custom Map Grayscale Filter */
+        iframe {
+            filter: invert(90%) hue-rotate(180deg) contrast(90%);
+            border-radius: 0.75rem;
         }
     </style>
 </head>
-<body>
+<body class="antialiased">
 
-    <header>
-        <div class="navbar">
-            <a href="#" class="logo">
-                <i class="fas fa-laptop-code"></i>
-                ARR <span>IT Solution</span>
-            </a>
-            
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#reviews" class="nav-link">Reviews</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-                <li>
-                    <a href="tel:7892908901" class="btn-header">
-                        <i class="fas fa-phone-alt"></i> +91 7892908901
-                    </a>
-                </li>
-            </ul>
+    <!-- Ambient Background -->
+    <div class="blob top-0 left-0"></div>
+    <div class="blob blob-right"></div>
 
-            <div class="mobile-toggle">
-                <i class="fas fa-bars"></i>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 left-0 border-b border-white/5 bg-[#030014]/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3">
+                    <div class="h-10 w-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-[0_0_15px_rgba(6,182,212,0.5)]">
+                        A
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-heading text-lg font-bold tracking-wider leading-none">ARR IT <span class="text-cyan-400">Solution</span></span>
+                        <span class="text-[10px] text-gray-400 uppercase tracking-widest">Enterprise Support</span>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#services" class="hover:text-cyan-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                        <a href="#rentals" class="hover:text-cyan-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Rentals</a>
+                        <a href="#testimonials" class="hover:text-cyan-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Reviews</a>
+                        <a href="#contact" class="bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-2 rounded-full font-medium transition-all shadow-[0_0_20px_rgba(8,145,178,0.4)] flex items-center gap-2">
+                            <i data-lucide="phone" class="w-4 h-4"></i> Call Now
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-    </header>
+    </nav>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Expert IT Solutions & Laptop Services</h1>
-            <p>From chip-level repairs to enterprise networking. We keep your business connected, protected, and running seamlessly.</p>
-            <div class="hero-btns">
-                <a href="#services" class="btn btn-primary">Our Services</a>
-                <a href="#contact" class="btn btn-outline">Contact Us</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="services">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Expertise</h2>
-                <div class="divider"></div>
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8 fade-in-section">
+                <span class="flex h-2 w-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                <span class="text-sm font-medium text-gray-300">Serving Bangalore Since 2010</span>
             </div>
             
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="icon-box"><i class="fas fa-laptop-medical"></i></div>
-                    <h3>Laptop Repair</h3>
-                    <p>Expert diagnostics for all brands. Screen replacement, battery issues, and performance tuning.</p>
-                </div>
-                <div class="service-card">
-                    <div class="icon-box"><i class="fas fa-microchip"></i></div>
-                    <h3>Chip Level Service</h3>
-                    <p>Advanced motherboard and component-level servicing by trained experts to fix complex issues.</p>
-                </div>
-                <div class="service-card">
-                    <div class="icon-box"><i class="fas fa-database"></i></div>
-                    <h3>Data Recovery</h3>
-                    <p>Safeguard your important files. We retrieve lost or corrupted files using advanced methods.</p>
-                </div>
-                <div class="service-card">
-                    <div class="icon-box"><i class="fas fa-network-wired"></i></div>
-                    <h3>Networking & CCTV</h3>
-                    <p>Professional LAN setup and surveillance system installation for offices and homes.</p>
-                </div>
-                <div class="service-card">
-                    <div class="icon-box"><i class="fas fa-briefcase"></i></div>
-                    <h3>Rental Laptops</h3>
-                    <p>Affordable high-performance laptops for short-term projects, events, and remote work.</p>
-                </div>
-                <div class="service-card">
-                    <div class="icon-box"><i class="fas fa-users-cog"></i></div>
-                    <h3>IT Manpower</h3>
-                    <p>Qualified System Administrators and IT staff staffing for your organization's needs.</p>
+            <h1 class="text-5xl md:text-7xl font-bold mb-8 leading-tight tracking-tight fade-in-section">
+                Expert Hardware.<br>
+                <span class="gradient-text">Seamless Uptime.</span>
+            </h1>
+            
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-400 mb-10 fade-in-section delay-100">
+                From precision chip-level repairs to enterprise networking and bulk laptop rentals. We keep your business connected, protected, and running at full speed.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in-section delay-200">
+                <a href="tel:7892908901" class="px-8 py-4 bg-white text-black rounded-full font-bold text-lg hover:bg-gray-100 transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="wrench" class="w-5 h-5"></i> Book Repair
+                </a>
+                <a href="#rentals" class="px-8 py-4 bg-transparent border border-white/20 text-white rounded-full font-bold text-lg hover:bg-white/5 transition-all">
+                    View Rentals
+                </a>
+            </div>
+        </div>
+
+        <!-- Hero Graphic (Abstract Motherboard) -->
+        <div class="mt-20 relative max-w-4xl mx-auto fade-in-section delay-300">
+            <div class="absolute inset-0 bg-cyan-500 blur-[120px] opacity-10"></div>
+            <div class="glass-card rounded-xl p-1 border-t border-white/20 relative overflow-hidden">
+                <!-- Decorative lines representing circuits -->
+                <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#22d3ee 1px, transparent 1px); background-size: 20px 20px;"></div>
+                
+                <div class="bg-[#0a0a0a] rounded-lg relative aspect-[21/9] flex items-center justify-center border border-white/5 overflow-hidden">
+                    <div class="relative w-full h-full flex flex-col items-center justify-center">
+                        <!-- Animated Central Chip -->
+                        <div class="w-24 h-24 border-2 border-cyan-500/50 rounded bg-cyan-900/10 flex items-center justify-center relative shadow-[0_0_30px_rgba(34,211,238,0.2)]">
+                            <i data-lucide="cpu" class="w-12 h-12 text-cyan-400"></i>
+                            <!-- Scanning line -->
+                            <div class="absolute w-full h-[2px] bg-cyan-400/50 top-0 animate-[scan_3s_ease-in-out_infinite]"></div>
+                        </div>
+                        
+                        <!-- Connection Lines -->
+                        <div class="absolute top-1/2 left-1/4 w-1/4 h-[1px] bg-gradient-to-r from-transparent to-cyan-500/50"></div>
+                        <div class="absolute top-1/2 right-1/4 w-1/4 h-[1px] bg-gradient-to-l from-transparent to-cyan-500/50"></div>
+                        
+                        <div class="absolute bottom-8 flex gap-8 text-gray-500 text-xs font-mono">
+                            <span class="flex items-center gap-1"><span class="w-2 h-2 bg-green-500 rounded-full"></span> DIAGNOSTICS: ONLINE</span>
+                            <span class="flex items-center gap-1"><span class="w-2 h-2 bg-cyan-500 rounded-full"></span> RENTALS: AVAILABLE</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" style="background: #f1f5f9;">
-        <div class="container">
-            <div class="section-header">
-                <h2>Get In Touch</h2>
-                <div class="divider"></div>
+    <style>
+        @keyframes scan {
+            0%, 100% { top: 0; opacity: 0; }
+            50% { top: 100%; opacity: 1; }
+        }
+    </style>
+
+    <!-- Brand Carousel -->
+    <div class="w-full border-y border-white/5 bg-white/[0.02] py-8 overflow-hidden">
+        <div class="flex whitespace-nowrap carousel-track">
+            <div class="flex items-center gap-20 mx-10 text-gray-600 font-bold text-lg uppercase tracking-widest">
+                <span>Dell</span><span>HP</span><span>Lenovo</span><span>Apple</span><span>Asus</span><span>Acer</span><span>Cisco</span><span>Microsoft</span>
+                <span>Dell</span><span>HP</span><span>Lenovo</span><span>Apple</span><span>Asus</span><span>Acer</span><span>Cisco</span><span>Microsoft</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Grid -->
+    <section id="services" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-section">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Core Capabilities</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">We don't just fix laptops; we manage your entire IT infrastructure. From chip-level precision to enterprise networking.</p>
             </div>
 
-            <div class="contact-wrapper">
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <h4><i class="fas fa-map-marker-alt"></i> Visit Us</h4>
-                        <p>No 6, 3rd Main, 2nd Block,<br>Omshakthi Layout, Ayappanagar,<br>KR Puram, Bangalore- 560036</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Laptop Service -->
+                <div class="glass-card p-6 rounded-2xl fade-in-section delay-100">
+                    <div class="h-12 w-12 bg-cyan-500/10 rounded-lg flex items-center justify-center mb-4 text-cyan-400">
+                        <i data-lucide="laptop"></i>
                     </div>
-                    <div class="contact-item">
-                        <h4><i class="fas fa-phone"></i> Call Us</h4>
-                        <p>+91 7892908901</p>
-                    </div>
-                    <div class="contact-item">
-                        <h4><i class="fas fa-envelope"></i> Email</h4>
-                        <p>rajkiran@arritsolution.com</p>
-                    </div>
-                    <div style="margin-top: 2rem;">
-                        <a href="tel:7892908901" class="btn btn-outline" style="display:inline-block; border-color:white;">Call Now</a>
-                    </div>
+                    <h3 class="text-lg font-bold mb-2">Expert Repairs</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Diagnostics and repairs for all brands. Screen replacement, keyboard fixes, and performance optimization.
+                    </p>
                 </div>
-                <div class="map-box">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.206778465064!2d77.7027!3d13.018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDAxJzEwLjgiTiA3N8KwNDInMTUuMCJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin" loading="lazy"></iframe>
+
+                <!-- Chip Level -->
+                <div class="glass-card p-6 rounded-2xl fade-in-section delay-100">
+                    <div class="h-12 w-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-4 text-purple-400">
+                        <i data-lucide="circuit-board"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Chip Level</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Advanced motherboard servicing. We fix what others replace. Component-level soldering and precision repair.
+                    </p>
+                </div>
+
+                <!-- Data Recovery -->
+                <div class="glass-card p-6 rounded-2xl fade-in-section delay-200">
+                    <div class="h-12 w-12 bg-pink-500/10 rounded-lg flex items-center justify-center mb-4 text-pink-400">
+                        <i data-lucide="database-backup"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Data Recovery</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Advanced methods to retrieve lost or corrupted files. Secure recovery for hard drives, SSDs, and arrays.
+                    </p>
+                </div>
+
+                <!-- Networking -->
+                <div class="glass-card p-6 rounded-2xl fade-in-section delay-200">
+                    <div class="h-12 w-12 bg-blue-500/10 rounded-lg flex items-center justify-center mb-4 text-blue-400">
+                        <i data-lucide="network"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">LAN & CCTV</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Structured cabling and surveillance installation. High-speed networking for offices and secure home setups.
+                    </p>
+                </div>
+
+                 <!-- Rentals -->
+                 <div class="glass-card p-6 rounded-2xl fade-in-section delay-300">
+                    <div class="h-12 w-12 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-4 text-emerald-400">
+                        <i data-lucide="calendar-clock"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Rental Fleet</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Flexible rentals for events or remote teams. High-performance units available for short & long term.
+                    </p>
+                </div>
+
+                <!-- Refurbished -->
+                <div class="glass-card p-6 rounded-2xl fade-in-section delay-300">
+                    <div class="h-12 w-12 bg-orange-500/10 rounded-lg flex items-center justify-center mb-4 text-orange-400">
+                        <i data-lucide="refresh-cw"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Refurbished</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Budget-friendly, certified systems. Rigorously tested and upgraded with SSDs/RAM for modern performance.
+                    </p>
+                </div>
+
+                 <!-- System Admin -->
+                 <div class="glass-card p-6 rounded-2xl fade-in-section delay-400">
+                    <div class="h-12 w-12 bg-indigo-500/10 rounded-lg flex items-center justify-center mb-4 text-indigo-400">
+                        <i data-lucide="user-cog"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">IT Staffing</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Qualified System Administrators for your organization. Expert manpower supply for seamless operations.
+                    </p>
+                </div>
+
+                <!-- Used Laptops -->
+                <div class="glass-card p-6 rounded-2xl fade-in-section delay-400">
+                    <div class="h-12 w-12 bg-red-500/10 rounded-lg flex items-center justify-center mb-4 text-red-400">
+                        <i data-lucide="shopping-bag"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Certified Used</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Affordable, warranty-backed pre-owned laptops. Great value for students and startups.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <h3>ARR IT Solution</h3>
-            <p>Reliable Laptop Solutions & IT Support in Bangalore</p>
-            <p style="margin-top: 1rem; font-size: 0.85rem;">&copy; 2025 ARR IT Solution. All Rights Reserved.</p>
+    <!-- Rentals Highlight Section -->
+    <section id="rentals" class="py-24 bg-white/[0.02] border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="fade-in-section">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Enterprise <span class="gradient-text">Rentals</span></h2>
+                    <p class="text-xl text-gray-400 mb-8">Scale your team without the capital expenditure. We provide bulk laptop rentals configured to your specs.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="mt-1"><i data-lucide="check-circle" class="text-cyan-400"></i></div>
+                            <div>
+                                <h4 class="font-bold text-lg">Instant Deployment</h4>
+                                <p class="text-gray-400 text-sm">Pre-loaded software and configurations. Ready to use out of the box.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="mt-1"><i data-lucide="check-circle" class="text-cyan-400"></i></div>
+                            <div>
+                                <h4 class="font-bold text-lg">Full Maintenance</h4>
+                                <p class="text-gray-400 text-sm">Hardware support included. We swap faulty units instantly to keep you working.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="mt-1"><i data-lucide="check-circle" class="text-cyan-400"></i></div>
+                            <div>
+                                <h4 class="font-bold text-lg">Flexible Terms</h4>
+                                <p class="text-gray-400 text-sm">Daily, weekly, or yearly plans tailored to your project timeline.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative fade-in-section delay-200">
+                    <div class="absolute -inset-2 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-2xl blur-lg opacity-30"></div>
+                    <div class="relative bg-[#0d0d12] rounded-xl border border-white/10 p-8">
+                        <div class="flex justify-between items-center mb-8">
+                            <h3 class="text-xl font-bold">Rental Options</h3>
+                            <span class="text-xs font-mono text-cyan-400 border border-cyan-400/30 px-2 py-1 rounded">IN STOCK</span>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-4 bg-white/5 rounded-lg">
+                                <div class="flex items-center gap-3">
+                                    <i data-lucide="monitor" class="text-gray-400"></i>
+                                    <div>
+                                        <div class="font-bold">Core i5 / 8GB / SSD</div>
+                                        <div class="text-xs text-gray-500">Standard Office Use</div>
+                                    </div>
+                                </div>
+                                <i data-lucide="arrow-right" class="text-gray-500 w-4 h-4"></i>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-white/5 rounded-lg border border-cyan-500/30">
+                                <div class="flex items-center gap-3">
+                                    <i data-lucide="code" class="text-cyan-400"></i>
+                                    <div>
+                                        <div class="font-bold text-white">Core i7 / 16GB / NVMe</div>
+                                        <div class="text-xs text-cyan-400">Developer / Heavy Duty</div>
+                                    </div>
+                                </div>
+                                <i data-lucide="arrow-right" class="text-cyan-400 w-4 h-4"></i>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-white/5 rounded-lg">
+                                <div class="flex items-center gap-3">
+                                    <i data-lucide="layers" class="text-gray-400"></i>
+                                    <div>
+                                        <div class="font-bold">MacBook Pro M1/M2</div>
+                                        <div class="text-xs text-gray-500">Creative Professionals</div>
+                                    </div>
+                                </div>
+                                <i data-lucide="arrow-right" class="text-gray-500 w-4 h-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-5xl font-bold text-center mb-16 fade-in-section">Client Stories</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Testimonial 1 -->
+                <div class="glass-card p-8 rounded-xl fade-in-section">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="h-10 w-10 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center font-bold text-white text-sm">RS</div>
+                        <div>
+                            <div class="font-bold">Rajesh Sharma</div>
+                            <div class="text-xs text-gray-400">Business Owner, Bangalore</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-1 text-yellow-500 mb-4 text-xs">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-gray-300 text-sm leading-relaxed">"ARR IT SOLUTION fixed my laptop quickly and got our operations running smoothly. Always friendly, fast, and they respond in a moment every single time."</p>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="glass-card p-8 rounded-xl fade-in-section delay-100">
+                    <div class="h-10 w-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-600 flex items-center justify-center font-bold text-white text-sm mb-4">PK</div>
+                    <div class="flex flex-col gap-1 mb-4">
+                         <div class="font-bold">Priya Kumar</div>
+                         <div class="text-xs text-gray-400">Software Engineer</div>
+                    </div>
+                     <div class="flex gap-1 text-yellow-500 mb-4 text-xs">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-gray-300 text-sm leading-relaxed">"Excellent chip-level service! They recovered my important data when I thought it was lost forever. The technical expertise is outstanding."</p>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="glass-card p-8 rounded-xl fade-in-section delay-200">
+                    <div class="flex items-center gap-4 mb-4">
+                         <div class="h-10 w-10 rounded-full bg-gradient-to-br from-emerald-400 to-green-600 flex items-center justify-center font-bold text-white text-sm">AM</div>
+                        <div>
+                            <div class="font-bold">Anil Mehta</div>
+                            <div class="text-xs text-gray-400">Training Manager, Tech Corp</div>
+                        </div>
+                    </div>
+                     <div class="flex gap-1 text-yellow-500 mb-4 text-xs">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-gray-300 text-sm leading-relaxed">"We rented laptops for our training event and the service was impeccable. Quality equipment, professional setup, and great support throughout."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Map -->
+    <section id="contact" class="py-24 bg-[#0a0a1a]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="fade-in-section">
+                    <h2 class="text-4xl font-bold mb-6">Get In Touch</h2>
+                    <p class="text-gray-400 mb-8">We are always within reach. Visit our lab or call for onsite support.</p>
+
+                    <div class="space-y-6">
+                        <a href="tel:7892908901" class="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors group">
+                            <div class="h-12 w-12 bg-cyan-500/20 rounded-full flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform">
+                                <i data-lucide="phone"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500 uppercase tracking-widest">Support Line</div>
+                                <div class="text-xl font-bold">7892908901</div>
+                            </div>
+                        </a>
+
+                         <a href="mailto:rajkiran@arritsolution.com" class="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors group">
+                            <div class="h-12 w-12 bg-purple-500/20 rounded-full flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform">
+                                <i data-lucide="mail"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500 uppercase tracking-widest">Email Us</div>
+                                <div class="text-lg font-bold">rajkiran@arritsolution.com</div>
+                            </div>
+                        </a>
+
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-white/5">
+                             <div class="h-12 w-12 bg-pink-500/20 rounded-full flex items-center justify-center text-pink-400 shrink-0">
+                                <i data-lucide="map-pin"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500 uppercase tracking-widest mb-1">Lab Location</div>
+                                <div class="text-sm text-gray-300 leading-relaxed">
+                                    N0 6, 3rd Main, 2nd Block,<br>
+                                    Omshakthi Layout, Ayappanagar,<br>
+                                    KR Puram, Bangalore - 560036
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-in-section delay-200">
+                    <div class="w-full h-[500px] bg-white/5 rounded-2xl border border-white/10 p-2">
+                        <iframe 
+                            src="https://maps.google.com/maps?q=13.0002516,77.7059211&hl=en&z=15&output=embed"
+                            width="100%" 
+                            height="100%" 
+                            style="border:0; border-radius: 0.75rem;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 py-12 bg-[#02000f]">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <div class="h-6 w-6 bg-cyan-600 rounded flex items-center justify-center text-[10px] font-bold">A</div>
+                <span class="font-bold text-gray-300 tracking-wide">ARR IT SOLUTION</span>
+            </div>
+            <div class="text-gray-600 text-sm">
+                &copy; 2025 ARR IT Solution. All rights reserved.
+            </div>
+            <div class="flex gap-6 text-gray-500">
+                <a href="#" class="hover:text-cyan-400 transition-colors"><i data-lucide="facebook" class="h-5 w-5"></i></a>
+                <a href="#" class="hover:text-cyan-400 transition-colors"><i data-lucide="instagram" class="h-5 w-5"></i></a>
+                <a href="#" class="hover:text-cyan-400 transition-colors"><i data-lucide="linkedin" class="h-5 w-5"></i></a>
+            </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script>
-        // Mobile Menu Toggle
-        const toggle = document.querySelector('.mobile-toggle');
-        const menu = document.querySelector('.nav-menu');
+        lucide.createIcons();
 
-        toggle.addEventListener('click', () => {
-            menu.classList.toggle('active');
-        });
+        // Intersection Observer for Fade-in Animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
 
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.remove('active');
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); // Only animate once
+                }
             });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-section').forEach(section => {
+            observer.observe(section);
         });
     </script>
 </body>
